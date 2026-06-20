@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import 'module_manifest.dart';
-import 'module_permission.dart';
+import 'module_priority.dart';
 import 'module_version.dart';
 
 /// Every feature module in the application must implement this contract.
@@ -25,11 +25,6 @@ abstract class FeatureModule {
   /// Full manifest with all metadata.
   ModuleManifest get manifest;
 
-  // ── Permissions ────────────────────────────────────
-
-  /// Permissions this module requires.
-  List<ModulePermission> get permissions;
-
   // ── Lifecycle ──────────────────────────────────────
 
   /// One-time async initialization.
@@ -37,6 +32,15 @@ abstract class FeatureModule {
   /// Called after dependency injection is set up.
   /// Use for DB migrations, preloading, API init, etc.
   Future<void> initialize();
+
+  /// Whether this module has been initialized already.
+  bool get isInitialized;
+
+  /// Release resources held by this module.
+  ///
+  /// Called when the module is disposed (app shutdown or hot-reload).
+  /// Resets [isInitialized] to false.
+  void dispose();
 
   /// Set up dependency injection for this module.
   ///
@@ -58,8 +62,15 @@ abstract class FeatureModule {
     return shellVersion >= manifest.minShellVersion;
   }
 
-  /// Default feature flag value.
-  bool defaultValueFor(String flagName) {
-    return manifest.featureFlags[flagName] ?? false;
-  }
+  /// Module initialization strategy (shorthand).
+  ModuleInitializationStrategy get strategy => manifest.initializationStrategy;
+
+  /// Startup behavior (shorthand).
+  StartupBehavior get startupBehavior => manifest.startupBehavior;
+
+  /// Whether the module is enabled by default.
+  bool get defaultEnabled => manifest.defaultEnabled;
+
+  /// Whether the module is visible by default.
+  bool get defaultVisible => manifest.defaultVisible;
 }

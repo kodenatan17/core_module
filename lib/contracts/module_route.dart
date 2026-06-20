@@ -15,15 +15,11 @@ class ModuleRouteDefinition {
   /// Whether this route requires authentication.
   final bool requiresAuth;
 
-  /// Permissions required to access this route.
-  final List<String> requiredPermissions;
-
   const ModuleRouteDefinition({
     required this.path,
     required this.name,
     this.description = '',
     this.requiresAuth = true,
-    this.requiredPermissions = const [],
   });
 
   @override
