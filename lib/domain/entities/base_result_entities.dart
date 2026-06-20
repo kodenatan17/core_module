@@ -17,7 +17,7 @@ mixin ResultEntity<T> {
     return ResultSuccess(data: data, meta: meta);
   }
 
-  static ResultError<T> error<T>({required message}) {
+  static ResultError<T> error<T>({required String message}) {
     return ResultError(code: 1, message: message);
   }
 }
