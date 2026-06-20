@@ -1,5 +1,6 @@
 // Core Module - Contracts barrel.
 
+export 'base_feature_module.dart';
 export 'feature_module.dart';
 export 'module_dependency.dart';
 export 'module_manifest.dart';

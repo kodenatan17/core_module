@@ -2,6 +2,7 @@ export 'application/usecases/base_use_case.dart';
 export 'domain/entities/base_result_entities.dart';
 export 'domain/repositories/feature_flag_repository.dart';
 export 'infrastructure/response/base_success_response.dart';
+export 'infrastructure/response/remote_response_mapper.dart';
 export 'injection/core_injection.dart';
 
 // ── Module Contracts (MFE-Ready) ──────────────────────
