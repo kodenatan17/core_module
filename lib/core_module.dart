@@ -7,6 +7,7 @@ export 'infrastructure/response/remote_response_mapper.dart';
 export 'injection/core_injection.dart';
 export 'infrastructure/services/base_dio_error_handler.dart';
 export 'infrastructure/datasource/secure_storage.dart';
+export 'infrastructure/services/base_exception.dart';
 
 // ── Module Contracts (MFE-Ready) ──────────────────────
 export 'contracts/contracts.dart';
