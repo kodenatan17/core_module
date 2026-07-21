@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:core_module/core_module.dart';
-import 'package:core_module/infrastructure/services/session_event_bus.dart';
-import 'package:core_module/contracts/auth/auth_token_manager.dart';
 import 'package:dio/dio.dart';
 
 class AuthInterceptor extends Interceptor {
