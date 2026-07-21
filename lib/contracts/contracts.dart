@@ -8,3 +8,4 @@ export 'module_priority.dart';
 export 'module_route.dart';
 export 'module_version.dart';
 export 'version_compatibility.dart';
+export 'authenticated_dio.dart';
