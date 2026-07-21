@@ -12,6 +12,8 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../infrastructure/services/base_dio_error_handler.dart' as _i75;
+import '../infrastructure/services/session_event_bus.dart' as _i1002;
 import 'network_module.dart' as _i567;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -26,6 +28,11 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final networkModule = _$NetworkModule();
+    gh.singleton<_i1002.SessionEventBus>(
+      () => _i1002.SessionEventBus(),
+      dispose: (i) => i.dispose(),
+    );
+    gh.singleton<_i75.BaseDioErrorHandler>(() => _i75.BaseDioErrorHandler());
     gh.lazySingleton<_i361.Dio>(() => networkModule.dio);
     return this;
   }
