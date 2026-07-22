@@ -16,7 +16,10 @@ export 'infrastructure/response/base_error_response.dart';
 export 'infrastructure/response/remote_response_mapper.dart';
 export 'infrastructure/services/base_dio_error_handler.dart';
 export 'infrastructure/services/base_exception.dart';
+export 'infrastructure/services/generic_event_bus.dart';
 export 'infrastructure/services/session_event_bus.dart';
+export 'infrastructure/services/pae_indexer.dart';
+export 'infrastructure/services/workspace_monitor.dart';
 
 // ── Injection & Contracts ─────────────────────────
 export 'injection/core_injection.dart';

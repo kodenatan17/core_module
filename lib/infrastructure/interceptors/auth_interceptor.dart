@@ -1,20 +1,21 @@
 import 'dart:io';
+import 'package:authentication_module/public_api.dart';
 import 'package:core_module/core_module.dart';
 import 'package:dio/dio.dart';
 
 class AuthInterceptor extends Interceptor {
   final AuthTokenManager _tokenManager;
-  final SessionEventBus _sessionEventBus;
+  final EventBus _eventBus;
   final Dio _dio;
   final List<String> _whitelistPaths;
 
   AuthInterceptor({
     required AuthTokenManager tokenManager,
-    required SessionEventBus sessionEventBus,
+    required EventBus eventBus,
     required Dio dio,
     List<String> whitelistPaths = const [],
   })  : _tokenManager = tokenManager,
-        _sessionEventBus = sessionEventBus,
+        _eventBus = eventBus,
         _dio = dio,
         _whitelistPaths = whitelistPaths;
 
@@ -58,12 +59,12 @@ class AuthInterceptor extends Interceptor {
       final result = await _tokenManager.refreshToken(refreshToken);
       if (result == null) {
         await _tokenManager.clearSession();
-        _sessionEventBus.emit(SessionExpired());
+        _eventBus.publish(SessionExpiredEvent());
         return handler.reject(err);
       }
 
       await _tokenManager.saveTokens(result.accessToken, result.refreshToken);
-      _sessionEventBus.emit(TokenRefreshed(
+      _eventBus.publish(TokenRefreshedEvent(
         accessToken: result.accessToken,
         refreshToken: result.refreshToken,
       ));
@@ -73,7 +74,7 @@ class AuthInterceptor extends Interceptor {
       return handler.resolve(retryResponse);
     } catch (e) {
       await _tokenManager.clearSession();
-      _sessionEventBus.emit(SessionExpired());
+      _eventBus.publish(SessionExpiredEvent());
       return handler.reject(err);
     }
   }

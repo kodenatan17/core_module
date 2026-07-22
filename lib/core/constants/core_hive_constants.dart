@@ -9,6 +9,7 @@ class CoreHiveBoxName {
   static const authBox = "authBox";
   static const notificationBox = "notificationBox";
   static const usersBox = "usersBox";
+  static const paeIndexBox = "paeIndexBox";
 
   static const accessTokenKey = "accessToken";
   static const refreshTokenKey = "refreshToken";
