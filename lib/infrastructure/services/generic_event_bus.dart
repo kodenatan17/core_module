@@ -14,7 +14,7 @@ class EventBus {
   /// Publish sebuah event ke semua subscriber yang mendengarkan tipe [T].
   void publish<T>(T event) {
     if (_controller.isClosed) return;
-    _controller.add(event);
+    _controller.add(event as Object);
   }
 
   /// Subscribe untuk menerima event bertipe [T].

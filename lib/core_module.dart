@@ -8,6 +8,7 @@ export 'infrastructure/datasource/secure_storage.dart';
 // ── Application & Domain ──────────────────────────
 export 'application/usecases/base_use_case.dart';
 export 'domain/entities/base_result_entities.dart';
+export 'domain/events/core_auth_events.dart';
 export 'domain/repositories/feature_flag_repository.dart';
 
 // ── Infrastructure & Services ─────────────────────

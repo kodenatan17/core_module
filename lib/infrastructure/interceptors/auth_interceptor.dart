@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:authentication_module/public_api.dart';
 import 'package:core_module/core_module.dart';
 import 'package:dio/dio.dart';
 
@@ -59,12 +58,12 @@ class AuthInterceptor extends Interceptor {
       final result = await _tokenManager.refreshToken(refreshToken);
       if (result == null) {
         await _tokenManager.clearSession();
-        _eventBus.publish(SessionExpiredEvent());
+        _eventBus.publish(CoreSessionExpiredEvent());
         return handler.reject(err);
       }
 
       await _tokenManager.saveTokens(result.accessToken, result.refreshToken);
-      _eventBus.publish(TokenRefreshedEvent(
+      _eventBus.publish(CoreTokenRefreshedEvent(
         accessToken: result.accessToken,
         refreshToken: result.refreshToken,
       ));
@@ -74,7 +73,7 @@ class AuthInterceptor extends Interceptor {
       return handler.resolve(retryResponse);
     } catch (e) {
       await _tokenManager.clearSession();
-      _eventBus.publish(SessionExpiredEvent());
+      _eventBus.publish(CoreSessionExpiredEvent());
       return handler.reject(err);
     }
   }
