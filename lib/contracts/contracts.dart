@@ -2,7 +2,10 @@
 
 export 'base_feature_module.dart';
 export 'feature_module.dart';
+export 'home_section.dart';
 export 'module_dependency.dart';
+export 'module_nav_item.dart';
+export 'session_permissions.dart';
 export 'module_manifest.dart';
 export 'module_priority.dart';
 export 'module_route.dart';

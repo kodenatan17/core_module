@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 
+import 'home_section.dart';
 import 'module_manifest.dart';
+import 'module_nav_item.dart';
 import 'module_priority.dart';
 import 'module_version.dart';
 
@@ -54,6 +56,27 @@ abstract class FeatureModule {
   /// Returns GoRouter route configurations so the shell can
   /// compose them without knowing individual module routes.
   List<RouteBase> get routes;
+
+  /// Routes reachable without an authenticated session.
+  ///
+  /// The shell composes these outside its auth guard. Everything in [routes]
+  /// stays behind it. Defaults to none.
+  List<RouteBase> get publicRoutes => const [];
+
+  // ── Home Screen ────────────────────────────────────
+
+  /// Cards this module contributes to the shell's home screen.
+  ///
+  /// The shell sorts every enabled module's sections by [HomeSection.order]
+  /// and renders them, so a module can appear on home without the shell
+  /// importing any of its widgets. Defaults to none.
+  List<HomeSection> get homeSections => const [];
+
+  /// Entries this module contributes to the shell's navigation bar.
+  ///
+  /// Same contract as [homeSections]: the shell renders, the module decides.
+  /// Defaults to none.
+  List<ModuleNavItem> get navItems => const [];
 
   // ── Helpers ────────────────────────────────────────
 

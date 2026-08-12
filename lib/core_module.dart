@@ -28,5 +28,9 @@ export 'injection/network_module.dart';
 export 'contracts/observability/observability.dart';
 export 'contracts/contracts.dart';
 
+// ── Theme tokens ──────────────────────────────────
+export 'core/theme/app_spacing.dart';
+
 // ── Constants ─────────────────────────────────────
+export 'core/constants/app_routes.dart';
 export 'core/constants/core_hive_constants.dart';
